@@ -1,7 +1,7 @@
 {
   "root": true,
   "project": {
-    "name": "nextjs-sanity-example-blog"
+    "name": "Example Blog"
   },
   "api": {
     "projectId": "3rxiqh2z",
