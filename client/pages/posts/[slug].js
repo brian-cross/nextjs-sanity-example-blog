@@ -5,7 +5,6 @@ import { urlForImage } from "../../lib/sanity";
 import { groq } from "next-sanity";
 
 export default function Post({ post }) {
-  console.log(post);
   return (
     <>
       <h2>{post.title}</h2>
