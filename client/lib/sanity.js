@@ -1,11 +1,5 @@
-const sanityClient = require("@sanity/client");
+import { createImageUrlBuilder } from "next-sanity";
+import { config } from "./config";
 
-const client = sanityClient({
-  projectId: process.env.SANITY_PROJECT_ID,
-  dataset: "production",
-  apiVersion: "2021-09-14",
-  token: process.env.SANITY_TOKEN,
-  useCdn: true,
-});
-
-export default client;
+export const urlForImage = source =>
+  createImageUrlBuilder(config).image(source).auto("format").fit("max");
