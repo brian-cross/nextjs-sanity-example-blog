@@ -9,6 +9,13 @@ export default {
       type: "string",
     },
     {
+      name: "slug",
+      type: "slug",
+      options: {
+        source: "title",
+      },
+    },
+    {
       title: "Subtitle",
       name: "subtitle",
       type: "string",
@@ -30,7 +37,7 @@ export default {
       of: [
         {
           type: "reference",
-          to: { type: "person" },
+          to: { type: "author" },
         },
       ],
     },
