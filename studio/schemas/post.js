@@ -24,11 +24,31 @@ export default {
       title: "Image",
       name: "image",
       type: "image",
+      fields: [
+        {
+          title: "Alt Text",
+          name: "altText",
+          type: "string",
+          options: {
+            isHighlighted: true,
+          },
+        },
+      ],
     },
     {
       title: "Body",
       name: "body",
       type: "text",
+    },
+    {
+      title: "Rich Text",
+      name: "richText",
+      type: "array",
+      of: [
+        {
+          type: "block",
+        },
+      ],
     },
     {
       title: "Authors",
