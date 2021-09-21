@@ -1,21 +1,25 @@
 import Link from "next/link";
+import Hero from "../components/Hero";
 import { sanityClient } from "../lib/sanity.server";
 import { groq } from "next-sanity";
 
 export default function Home({ posts }) {
   return (
-    <div>
-      <h1>Hello Blog!</h1>
-      <ul>
-        {posts.map(post => (
-          <li key={post._id}>
-            <Link href={`/posts/${post.slug}`}>
-              <a>{post.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <Hero />
+      <div>
+        <h1>Hello Blog!</h1>
+        <ul>
+          {posts.map(post => (
+            <li key={post._id}>
+              <Link href={`/posts/${post.slug}`}>
+                <a>{post.title}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }
 
