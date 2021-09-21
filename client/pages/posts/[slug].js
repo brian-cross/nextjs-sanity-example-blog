@@ -1,10 +1,18 @@
 import Image from "next/image";
-import Link from "next/link";
+import BlockContent from "@sanity/block-content-to-react";
 import { sanityClient } from "../../lib/sanity.server";
 import { urlForImage } from "../../lib/sanity";
 import { groq } from "next-sanity";
 
 export default function Post({ post }) {
+  const serializers = {
+    types: {
+      h1: props => {
+        <h1 style={{ color: "red" }}>{props.node.h1}</h1>;
+      },
+    },
+  };
+
   return (
     <>
       <h2>{post.title}</h2>
@@ -14,11 +22,12 @@ export default function Post({ post }) {
         <p key={index}>{author}</p>
       ))}
       <p>{post.body}</p>
+      <BlockContent blocks={post.richText} serializers={serializers} />
       <Image
         width={600}
         height={400}
         src={urlForImage(post.image).width(600).height(400).url()}
-        alt="Cassette Tapes"
+        alt={post.image.altText}
       />
     </>
   );
@@ -47,6 +56,7 @@ export async function getStaticProps({ params }) {
     subtitle,
     body,
     image,
+    richText,
     "slug": slug.current,
     "authors": authors[]->name
   }
