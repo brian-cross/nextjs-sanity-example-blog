@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 import { sanityClient } from "../lib/sanity.server";
-import { urlForImage } from "../lib/sanity";
 import { groq } from "next-sanity";
 
 export default function Home({ posts }) {
@@ -23,7 +21,7 @@ export default function Home({ posts }) {
 
 export async function getStaticProps() {
   const query = groq`
-  *[_type == "post"]{
+  *[_type == "post"] | order(_createdAt asc) {
     _id,
     title,
     "slug": slug.current
