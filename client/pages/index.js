@@ -7,8 +7,8 @@ export default function Home({ posts }) {
   return (
     <>
       <Hero />
-      <div>
-        <h1>Hello Blog!</h1>
+      <main className="container">
+        <h3 className="font-size-lg">Blog Posts</h3>
         <ul>
           {posts.map(post => (
             <li key={post._id}>
@@ -18,7 +18,12 @@ export default function Home({ posts }) {
             </li>
           ))}
         </ul>
-      </div>
+      </main>
+      <style jsx>{`
+        h3 {
+          font-weight: bold;
+        }
+      `}</style>
     </>
   );
 }

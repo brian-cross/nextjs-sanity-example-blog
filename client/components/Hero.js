@@ -6,8 +6,8 @@ export default function Hero() {
       <div className="outer">
         <HeroImage source="/images/hero-bg.jpg" />
         <div className="container">
-          <h1>Hello Blog</h1>
-          <h2>
+          <h1 className="font-size-xl">Hello Blog</h1>
+          <h2 className="font-size-lg">
             An example blog powered by a user friendly content management system
           </h2>
         </div>
@@ -25,7 +25,6 @@ export default function Hero() {
         }
 
         h1 {
-          font-size: clamp(3rem, 12vw, 9rem);
           font-weight: bold;
           margin: 0;
           padding-top: 12vh;
@@ -33,7 +32,6 @@ export default function Hero() {
 
         h2 {
           position: absolute;
-          font-size: clamp(1rem, 4vw, 3rem);
           font-weight: bold;
           text-align: right;
           line-height: 1.5;
@@ -41,16 +39,6 @@ export default function Hero() {
           margin: 0;
           bottom: 17vh;
           right: 0;
-        }
-
-        @media (orientation: landscape) and (max-height: 40rem) {
-          h1 {
-            font-size: clamp(3rem, 12vh, 9rem);
-          }
-
-          h2 {
-            font-size: clamp(1rem, 4vh, 3rem);
-          }
         }
       `}</style>
     </>
