@@ -1,25 +1,10 @@
-import Image from "next/image";
-import css from "styled-jsx/css";
+import HeroImage from "./HeroImage";
 
 export default function Hero() {
-  // For styling the Image component
-  const { className: imageClass, styles: imageStyles } = css.resolve`
-    img {
-      filter: brightness(50%);
-    }
-  `;
-
   return (
     <>
       <div className="outer">
-        <Image
-          className={imageClass}
-          src="/images/hero-bg.jpg"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
-          alt=""
-        />
+        <HeroImage source="/images/hero-bg.jpg" />
         <div className="container">
           <h1>Hello Blog</h1>
           <h2>
@@ -27,16 +12,11 @@ export default function Hero() {
           </h2>
         </div>
       </div>
-      {imageStyles}
       <style jsx>{`
         .outer {
           position: relative;
           height: 100vh;
           color: white;
-        }
-
-        .hero {
-          filter: brightness(50%);
         }
 
         .container {
