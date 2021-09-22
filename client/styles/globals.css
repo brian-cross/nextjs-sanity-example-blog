@@ -18,3 +18,22 @@ body {
   width: 90%;
   margin: 0 auto;
 }
+
+/* Scrollbar - Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #333 #666;
+}
+
+/* Scrollbar - Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #666;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #333;
+}
