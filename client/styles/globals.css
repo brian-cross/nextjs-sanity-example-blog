@@ -13,3 +13,8 @@ body {
 body {
   font-family: "Poppins", sans-serif;
 }
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}

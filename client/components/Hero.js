@@ -41,9 +41,7 @@ export default function Hero() {
 
         .container {
           position: relative;
-          width: 90%;
           height: 100vh;
-          margin: 0 auto;
         }
 
         h1 {
