@@ -21,17 +21,17 @@ export default function Hero() {
           alt=""
         />
         <div className="container">
-          <h1 className="">Hello Blog</h1>
-          <p className="">
+          <h1>Hello Blog</h1>
+          <h2>
             An example blog powered by a user friendly content management system
-          </p>
+          </h2>
         </div>
       </div>
       {imageStyles}
       <style jsx>{`
         .outer {
           position: relative;
-          min-height: 100vh;
+          height: 100vh;
           color: white;
         }
 
@@ -51,7 +51,7 @@ export default function Hero() {
           padding-top: 12vh;
         }
 
-        p {
+        h2 {
           position: absolute;
           font-size: clamp(1rem, 4vw, 3rem);
           font-weight: bold;
@@ -68,7 +68,7 @@ export default function Hero() {
             font-size: clamp(3rem, 12vh, 9rem);
           }
 
-          p {
+          h2 {
             font-size: clamp(1rem, 4vh, 3rem);
           }
         }
