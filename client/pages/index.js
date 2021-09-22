@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Hero from "../components/Hero";
+import Card from "../components/Card";
 import { sanityClient } from "../lib/sanity.server";
 import { groq } from "next-sanity";
 
@@ -8,7 +9,8 @@ export default function Home({ posts }) {
     <>
       <Hero />
       <main className="container">
-        <h3 className="font-size-lg">Blog Posts</h3>
+        <h3>Blog Posts</h3>
+        <Card />
         <ul>
           {posts.map(post => (
             <li key={post._id}>
@@ -21,6 +23,7 @@ export default function Home({ posts }) {
       </main>
       <style jsx>{`
         h3 {
+          font-size: clamp(2rem, 6vw, 3rem);
           font-weight: bold;
         }
       `}</style>
