@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Hero from "../components/Hero";
 import Card from "../components/Card";
+import CardGrid from "../components/CardGrid";
 import { sanityClient } from "../lib/sanity.server";
 import { groq } from "next-sanity";
 
@@ -10,7 +11,56 @@ export default function Home({ posts }) {
       <Hero />
       <main className="container">
         <h3>Blog Posts</h3>
-        <Card />
+        <CardGrid>
+          <Card
+            title="A title or brief description"
+            author="Brian Cross"
+            image="/images/hero-bg.jpg"
+            altText="Mountains"
+            tags={["Landscapes", "Winter", "Mountains"]}
+            date="Sept 22 2021"
+          />
+          <Card
+            title="A title or brief description"
+            author="Brian Cross"
+            image="/images/hero-bg.jpg"
+            altText="Mountains"
+            tags={["Landscapes", "Winter", "Mountains"]}
+            date="Sept 22 2021"
+          />
+          <Card
+            title="A title or brief description"
+            author="Brian Cross"
+            image="/images/hero-bg.jpg"
+            altText="Mountains"
+            tags={["Landscapes", "Winter", "Mountains"]}
+            date="Sept 22 2021"
+          />
+          <Card
+            title="A title or brief description"
+            author="Brian Cross"
+            image="/images/hero-bg.jpg"
+            altText="Mountains"
+            tags={["Landscapes", "Winter", "Mountains"]}
+            date="Sept 22 2021"
+          />
+          <Card
+            title="A title or brief description"
+            author="Brian Cross"
+            image="/images/hero-bg.jpg"
+            altText="Mountains"
+            tags={["Landscapes", "Winter", "Mountains"]}
+            date="Sept 22 2021"
+          />
+          <Card
+            title="A title or brief description"
+            author="Brian Cross"
+            image="/images/hero-bg.jpg"
+            altText="Mountains"
+            tags={["Landscapes", "Winter", "Mountains"]}
+            date="Sept 22 2021"
+          />
+        </CardGrid>
         <ul>
           {posts.map(post => (
             <li key={post._id}>
