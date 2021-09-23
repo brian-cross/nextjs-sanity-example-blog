@@ -1,34 +1,31 @@
 import Image from "next/image";
 
-export default function Card() {
+export default function Card({ title, author, image, altText, tags, date }) {
   return (
     <>
       <article>
         <div className="text">
-          <h1 className="font-size-md">This is the title of the post</h1>
-          <h2 className="font-size-sm">Author Name</h2>
+          <h1 className="font-size-md">{title}</h1>
+          <h2 className="font-size-sm">{author}</h2>
         </div>
         <div className="image">
-          <Image
-            src="/images/hero-bg.jpg"
-            layout="fill"
-            objectFit="cover"
-            alt="The alt text"
-          />
+          <Image src={image} layout="fill" objectFit="cover" alt={altText} />
         </div>
         <div className="text">
           <ul>
-            <li>Tag 1</li>
-            <li>Tag 2</li>
-            <li>Tag 3</li>
+            {tags.map((tag, index) => (
+              <li key={index}>{tag}</li>
+            ))}
           </ul>
-          <time>January 1, 2021</time>
+          <time>{date}</time>
         </div>
       </article>
       <style jsx>{`
         article {
           width: 100%;
-          max-width: 30rem;
+           {
+            /* max-width: 30rem; */
+          }
           box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.25);
         }
 
@@ -53,7 +50,8 @@ export default function Card() {
 
         ul {
           display: flex;
-          gap: 2em;
+          flex-wrap: wrap;
+          gap: 0.5em 1.25em;
           font-weight: bold;
         }
 
