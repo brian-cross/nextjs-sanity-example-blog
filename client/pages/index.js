@@ -10,7 +10,7 @@ export default function Home({ posts }) {
     <>
       <Hero />
       <main className="container">
-        <h3>Blog Posts</h3>
+        <h3 className="font-size-xl-fluid">Blog Posts</h3>
         <CardGrid>
           <Card
             title="A title or brief description"
@@ -73,7 +73,6 @@ export default function Home({ posts }) {
       </main>
       <style jsx>{`
         h3 {
-          font-size: clamp(2rem, 6vw, 3rem);
           font-weight: bold;
         }
       `}</style>

@@ -6,8 +6,8 @@ export default function Hero() {
       <div className="outer">
         <HeroImage source="/images/hero-bg.jpg" />
         <div className="container">
-          <h1 className="font-size-xl">Hello Blog</h1>
-          <h2 className="font-size-lg">
+          <h1 className="font-size-xxl-fluid">Hello Blog</h1>
+          <h2 className="font-size-lg-fluid">
             An example blog powered by a user friendly content management system
           </h2>
         </div>
