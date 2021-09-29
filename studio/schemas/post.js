@@ -9,6 +9,12 @@ export default {
       type: "string",
     },
     {
+      title: "Subtitle",
+      name: "subtitle",
+      type: "string",
+    },
+    {
+      title: "URL Slug",
       name: "slug",
       type: "slug",
       options: {
@@ -16,18 +22,19 @@ export default {
       },
     },
     {
-      title: "Subtitle",
-      name: "subtitle",
-      type: "string",
+      title: "Published Date",
+      name: "publishedDate",
+      type: "datetime",
     },
     {
-      title: "Image",
-      name: "image",
+      title: "Main Image",
+      name: "mainImage",
       type: "image",
       fields: [
         {
           title: "Alt Text",
           name: "altText",
+          description: "Important for SEO and accessibility",
           type: "string",
           options: {
             isHighlighted: true,
@@ -38,11 +45,6 @@ export default {
     {
       title: "Body",
       name: "body",
-      type: "text",
-    },
-    {
-      title: "Rich Text",
-      name: "richText",
       type: "array",
       of: [
         {
@@ -51,13 +53,19 @@ export default {
       ],
     },
     {
-      title: "Authors",
-      name: "authors",
+      title: "Author",
+      name: "author",
+      type: "reference",
+      to: { type: "author" },
+    },
+    {
+      title: "Tags",
+      name: "tags",
       type: "array",
       of: [
         {
           type: "reference",
-          to: { type: "author" },
+          to: { type: "tag" },
         },
       ],
     },
