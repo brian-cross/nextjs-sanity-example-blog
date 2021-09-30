@@ -1,32 +1,41 @@
 import Image from "next/image";
 import BlockContent from "@sanity/block-content-to-react";
 import formatIsoDate from "../../lib/formatIsoDate";
-import { sanityClient } from "../../lib/sanity.server";
-import { urlForImage } from "../../lib/sanity";
+import { getClient } from "../../lib/sanity.server";
+import { urlForImage, usePreviewSubscription } from "../../lib/sanity";
 import { groq } from "next-sanity";
 
-export default function Post({ post }) {
-  // const serializers = {
-  //   types: {
-  //     code: props => {
-  //       return (
-  //         <pre>
-  //           <code>{props.node.code}</code>
-  //         </pre>
-  //       );
-  //     },
-  //     block: props => {
-  //       return props.node.style === "h1" ? (
-  //         <h1 style={{ color: "red" }}>{props.children}</h1>
-  //       ) : null;
-  //     },
-  //   },
-  // };
+function filterDataToSingleItem(data, preview) {
+  if (!Array.isArray(data)) return data;
 
-  console.log(post.author.bio);
+  return data.length > 1 && preview
+    ? data.filter(item => item._id.startsWith(`drafts.`)).slice(-1)[0]
+    : data.slice(-1)[0];
+}
+
+export default function Post({ data, preview }) {
+  const { data: previewData } = usePreviewSubscription(data?.query, {
+    params: data?.queryParams ?? {},
+    initialData: data?.post,
+    enabled: preview,
+  });
+
+  const post = filterDataToSingleItem(previewData, preview);
 
   return (
     <>
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      {preview && (
+        <a
+          href={`/api/exitPreview${
+            data?.queryParams?.slug
+              ? `/?slug=/posts/${data.queryParams.slug}`
+              : ``
+          }`}
+        >
+          Previewing. Click to exit.
+        </a>
+      )}
       <div className="container reading-column">
         <h1 className="font-size-xl-fluid">{post?.title}</h1>
         <h2 className="font-size-md-fluid">{post?.subtitle}</h2>
@@ -54,12 +63,14 @@ export default function Post({ post }) {
             />
           )}
         </div>
-        <BlockContent
-          projectId="3rxiqh2z"
-          dataset="production"
-          blocks={post?.body}
-          // serializers={serializers}
-        />
+        {post?.body && (
+          <BlockContent
+            projectId={process.env.SANITY_PROJECT_ID}
+            dataset={process.env.SANITY_DATASET}
+            blocks={post.body}
+            // serializers={serializers}
+          />
+        )}
       </div>
       <style jsx>{`
         .reading-column {
@@ -101,7 +112,7 @@ export async function getStaticPaths() {
     *[_type == "post"]{"slug": slug.current}
   `;
 
-  const posts = await sanityClient.fetch(query);
+  const posts = await getClient().fetch(query);
   const paths = posts.map(post => `/posts/${post.slug}`);
 
   return {
@@ -110,25 +121,31 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, preview = false }) {
   const query = groq`
-  *[_type == "post" && (slug.current == "${params.slug}")]{
+  *[_type == "post" && (slug.current == $slug)]{
     _id,
     title,
     subtitle,
-    author->{name, avatar, bio},
+    author->{name, avatar},
     mainImage,
     publishedDate,
     body,
     "slug": slug.current,
   }
   `;
+  const queryParams = { slug: params.slug };
 
-  const post = await sanityClient.fetch(query);
+  const data = await getClient(preview).fetch(query, queryParams);
+
+  if (!data) return { notFound: true };
+
+  const post = filterDataToSingleItem(data, preview);
 
   return {
     props: {
-      post: post[0],
+      preview,
+      data: { post, query, queryParams },
     },
   };
 }
