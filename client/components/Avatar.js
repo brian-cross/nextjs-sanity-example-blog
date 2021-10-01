@@ -4,16 +4,16 @@ import { urlForImage } from "../lib/sanity";
 export default function Avatar({ image }) {
   return (
     <>
-      <div className="avatar">
-        {image && (
+      {image && (
+        <div className="avatar">
           <Image
             layout="fill"
             objectFit="cover"
             src={urlForImage(image).url()}
             alt=""
           />
-        )}
-      </div>
+        </div>
+      )}
       <style jsx>{`
         .avatar {
           position: relative;
