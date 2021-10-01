@@ -1,14 +1,17 @@
 import Image from "next/image";
+import { useRemToPx } from "../lib/hooks";
 import { urlForImage } from "../lib/sanity";
 
-export default function Avatar({ image }) {
+export default function Avatar({ image, sizeInRem = 3 }) {
+  const px = useRemToPx(sizeInRem);
+
   return (
     <>
       {image && (
         <div className="avatar">
           <Image
-            layout="fill"
-            objectFit="cover"
+            width={px || 48}
+            height={px || 48}
             src={urlForImage(image).url()}
             alt=""
           />
@@ -16,10 +19,9 @@ export default function Avatar({ image }) {
       )}
       <style jsx>{`
         .avatar {
-          position: relative;
           overflow: hidden;
-          height: 3rem;
-          width: 3rem;
+          height: ${sizeInRem}rem;
+          width: ${sizeInRem}rem;
           border-radius: 1.5rem;
         }
       `}</style>
