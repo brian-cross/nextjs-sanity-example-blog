@@ -1,10 +1,10 @@
 import Image from "next/image";
+import Author from "../../components/Author";
 import BlockContent from "@sanity/block-content-to-react";
 import formatIsoDate from "../../lib/formatIsoDate";
 import { getClient } from "../../lib/sanity.server";
 import { urlForImage, usePreviewSubscription } from "../../lib/sanity";
 import { groq } from "next-sanity";
-import Avatar from "../../components/Avatar";
 
 function filterDataToSingleItem(data, preview) {
   if (!Array.isArray(data)) return data;
@@ -40,10 +40,12 @@ export default function Post({ data, preview }) {
         <h1 className="font-size-xl-fluid">{post?.title}</h1>
         <h2 className="font-size-md-fluid">{post?.subtitle}</h2>
         <p>{post?.publishedDate && formatIsoDate(post.publishedDate)}</p>
-        <div className="author">
-          <Avatar image={post?.author?.avatar} />
-          <span>{post?.author?.name}</span>
-        </div>
+        <Author
+          details={{
+            avatar: post?.author?.avatar,
+            name: post?.author?.name,
+          }}
+        />
         <div className="image">
           {post?.mainImage && (
             <Image
@@ -78,12 +80,6 @@ export default function Post({ data, preview }) {
           height: 50vw;
           max-height: 30rem;
           margin: 2rem 0;
-        }
-
-        .author {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
         }
       `}</style>
     </>
