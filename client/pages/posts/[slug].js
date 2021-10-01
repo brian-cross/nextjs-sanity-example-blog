@@ -1,11 +1,10 @@
 import Container from "../../components/Container";
 import PostHeader from "../../components/PostHeader";
 import PostMainImage from "../../components/PostMainImage";
-import BlockContent from "@sanity/block-content-to-react";
+import PostBody from "../../components/PostBody";
+import { groq } from "next-sanity";
 import { getClient } from "../../lib/sanity.server";
 import { usePreviewSubscription } from "../../lib/sanity";
-import { groq } from "next-sanity";
-import PostBody from "../../components/PostBody";
 
 function filterDataToSingleItem(data, preview) {
   if (!Array.isArray(data)) return data;
