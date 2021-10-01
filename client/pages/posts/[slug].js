@@ -24,7 +24,6 @@ export default function Post({ data, preview }) {
 
   return (
     <>
-      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       {preview && (
         <a
           href={`/api/exitPreview${
