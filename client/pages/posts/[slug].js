@@ -3,8 +3,9 @@ import Author from "../../components/Author";
 import BlockContent from "@sanity/block-content-to-react";
 import formatIsoDate from "../../lib/formatIsoDate";
 import { getClient } from "../../lib/sanity.server";
-import { urlForImage, usePreviewSubscription } from "../../lib/sanity";
+import { usePreviewSubscription } from "../../lib/sanity";
 import { groq } from "next-sanity";
+import MainImage from "../../components/MainImage";
 
 function filterDataToSingleItem(data, preview) {
   if (!Array.isArray(data)) return data;
@@ -46,16 +47,7 @@ export default function Post({ data, preview }) {
             name: post?.author?.name,
           }}
         />
-        <div className="image">
-          {post?.mainImage && (
-            <Image
-              layout="fill"
-              objectFit="cover"
-              src={urlForImage(post.mainImage).url()}
-              alt={post.mainImage?.altText}
-            />
-          )}
-        </div>
+        <MainImage image={post?.mainImage} altText={post?.mainImage?.altText} />
         {post?.body && (
           <BlockContent
             projectId={process.env.SANITY_PROJECT_ID}
@@ -73,13 +65,6 @@ export default function Post({ data, preview }) {
         h2 {
           color: #666;
           font-weight: normal;
-        }
-
-        .image {
-          position: relative;
-          height: 50vw;
-          max-height: 30rem;
-          margin: 2rem 0;
         }
       `}</style>
     </>
