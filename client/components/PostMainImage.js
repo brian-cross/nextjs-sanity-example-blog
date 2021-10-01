@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { urlForImage } from "../lib/sanity";
 
-export default function MainImage({ image, altText }) {
+export default function PostMainImage({ image, altText }) {
   return (
     <>
       {image && (
