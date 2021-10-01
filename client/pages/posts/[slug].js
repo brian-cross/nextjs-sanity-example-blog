@@ -1,11 +1,11 @@
 import Container from "../../components/Container";
-import Author from "../../components/Author";
-import MainImage from "../../components/MainImage";
+import PostHeader from "../../components/PostHeader";
+import PostMainImage from "../../components/PostMainImage";
 import BlockContent from "@sanity/block-content-to-react";
-import formatIsoDate from "../../lib/formatIsoDate";
 import { getClient } from "../../lib/sanity.server";
 import { usePreviewSubscription } from "../../lib/sanity";
 import { groq } from "next-sanity";
+import PostBody from "../../components/PostBody";
 
 function filterDataToSingleItem(data, preview) {
   if (!Array.isArray(data)) return data;
@@ -38,26 +38,19 @@ export default function Post({ data, preview }) {
         </a>
       )}
       <Container narrow>
-        <h1 className="font-size-xl-fluid">{post?.title}</h1>
-        <h2 className="font-size-md-fluid">{post?.subtitle}</h2>
-        <p>{post?.publishedDate && formatIsoDate(post.publishedDate)}</p>
-        <Author avatar={post?.author?.avatar} name={post?.author?.name} />
-        <MainImage image={post?.mainImage} altText={post?.mainImage?.altText} />
-        {post?.body && (
-          <BlockContent
-            projectId={process.env.SANITY_PROJECT_ID}
-            dataset={process.env.SANITY_DATASET}
-            blocks={post.body}
-            // serializers={serializers}
-          />
-        )}
+        <PostHeader
+          title={post?.title}
+          subtitle={post?.subtitle}
+          date={post?.publishedDate}
+          avatar={post?.author?.avatar}
+          authorName={post?.author?.name}
+        />
+        <PostMainImage
+          image={post?.mainImage}
+          altText={post?.mainImage?.altText}
+        />
+        <PostBody content={post?.body} />
       </Container>
-      <style jsx>{`
-        h2 {
-          color: #666;
-          font-weight: normal;
-        }
-      `}</style>
     </>
   );
 }
