@@ -1,11 +1,11 @@
-import Image from "next/image";
+import Container from "../../components/Container";
 import Author from "../../components/Author";
+import MainImage from "../../components/MainImage";
 import BlockContent from "@sanity/block-content-to-react";
 import formatIsoDate from "../../lib/formatIsoDate";
 import { getClient } from "../../lib/sanity.server";
 import { usePreviewSubscription } from "../../lib/sanity";
 import { groq } from "next-sanity";
-import MainImage from "../../components/MainImage";
 
 function filterDataToSingleItem(data, preview) {
   if (!Array.isArray(data)) return data;
@@ -37,16 +37,11 @@ export default function Post({ data, preview }) {
           Previewing. Click to exit.
         </a>
       )}
-      <div className="container reading-column">
+      <Container narrow>
         <h1 className="font-size-xl-fluid">{post?.title}</h1>
         <h2 className="font-size-md-fluid">{post?.subtitle}</h2>
         <p>{post?.publishedDate && formatIsoDate(post.publishedDate)}</p>
-        <Author
-          details={{
-            avatar: post?.author?.avatar,
-            name: post?.author?.name,
-          }}
-        />
+        <Author avatar={post?.author?.avatar} name={post?.author?.name} />
         <MainImage image={post?.mainImage} altText={post?.mainImage?.altText} />
         {post?.body && (
           <BlockContent
@@ -56,12 +51,8 @@ export default function Post({ data, preview }) {
             // serializers={serializers}
           />
         )}
-      </div>
+      </Container>
       <style jsx>{`
-        .reading-column {
-          max-width: 50rem;
-        }
-
         h2 {
           color: #666;
           font-weight: normal;
