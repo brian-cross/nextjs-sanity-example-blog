@@ -1,8 +1,6 @@
 import Avatar from "./Avatar";
 
-export default function Author({ details }) {
-  const { avatar, name } = details;
-
+export default function Author({ avatar, name }) {
   return (
     <>
       {(avatar || name) && (
