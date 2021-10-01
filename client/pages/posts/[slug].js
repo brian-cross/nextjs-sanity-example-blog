@@ -4,6 +4,7 @@ import formatIsoDate from "../../lib/formatIsoDate";
 import { getClient } from "../../lib/sanity.server";
 import { urlForImage, usePreviewSubscription } from "../../lib/sanity";
 import { groq } from "next-sanity";
+import Avatar from "../../components/Avatar";
 
 function filterDataToSingleItem(data, preview) {
   if (!Array.isArray(data)) return data;
@@ -40,16 +41,7 @@ export default function Post({ data, preview }) {
         <h2 className="font-size-md-fluid">{post?.subtitle}</h2>
         <p>{post?.publishedDate && formatIsoDate(post.publishedDate)}</p>
         <div className="author">
-          <div className="avatar">
-            {post?.author?.avatar && (
-              <Image
-                layout="fill"
-                objectFit="cover"
-                src={urlForImage(post.author.avatar).url()}
-                alt=""
-              />
-            )}
-          </div>
+          <Avatar image={post?.author?.avatar} />
           <span>{post?.author?.name}</span>
         </div>
         <div className="image">
@@ -92,14 +84,6 @@ export default function Post({ data, preview }) {
           display: flex;
           align-items: center;
           gap: 1rem;
-        }
-
-        .avatar {
-          position: relative;
-          overflow: hidden;
-          height: 3rem;
-          width: 3rem;
-          border-radius: 1.5rem;
         }
       `}</style>
     </>
