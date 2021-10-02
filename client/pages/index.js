@@ -6,10 +6,14 @@ import { sanityClient } from "../lib/sanity.server";
 import { groq } from "next-sanity";
 import Container from "../components/Container";
 
-export default function Home({ posts }) {
+export default function Home({ hero, posts }) {
   return (
     <>
-      <Hero />
+      <Hero
+        heading={hero?.heading}
+        tagLine={hero?.tagLine}
+        image={hero?.image}
+      />
       <Container>
         <main>
           <h3 className="font-size-xl-fluid">Blog Posts</h3>
@@ -84,7 +88,11 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-  const query = groq`
+  const heroQuery = groq`
+  *[_type == "hero"]{heading, tagLine, image}[0]
+  `;
+
+  const postQuery = groq`
   *[_type == "post"] | order(_createdAt asc) {
     _id,
     title,
@@ -92,10 +100,16 @@ export async function getStaticProps() {
   }
   `;
 
-  const posts = await sanityClient.fetch(query);
+  const [hero, posts] = await Promise.all([
+    sanityClient.fetch(heroQuery),
+    sanityClient.fetch(postQuery),
+  ]);
+
+  console.log(hero);
 
   return {
     props: {
+      hero,
       posts,
     },
   };

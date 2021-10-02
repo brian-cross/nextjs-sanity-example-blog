@@ -1,15 +1,13 @@
 import HeroImage from "./HeroImage";
 
-export default function Hero() {
+export default function Hero({ heading, tagLine, image }) {
   return (
     <>
       <div className="outer">
-        <HeroImage source="/images/hero-bg.jpg" />
+        <HeroImage image={image} />
         <div className="hero-content">
-          <h1 className="font-size-xxl-fluid">Hello Blog</h1>
-          <h2 className="font-size-lg-fluid">
-            An example blog powered by a user friendly content management system
-          </h2>
+          <h1 className="font-size-xxl-fluid">{heading}</h1>
+          <h2 className="font-size-lg-fluid">{tagLine}</h2>
         </div>
       </div>
       <style jsx>{`
