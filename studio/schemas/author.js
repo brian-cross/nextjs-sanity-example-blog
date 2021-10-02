@@ -1,7 +1,10 @@
+import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
+
 export default {
   title: "Author",
   name: "author",
   type: "document",
+  icon: PersonRoundedIcon,
   fieldsets: [
     {
       name: "social",
