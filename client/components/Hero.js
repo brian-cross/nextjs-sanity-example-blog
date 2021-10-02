@@ -5,7 +5,7 @@ export default function Hero() {
     <>
       <div className="outer">
         <HeroImage source="/images/hero-bg.jpg" />
-        <div className="container">
+        <div className="hero-content">
           <h1 className="font-size-xxl-fluid">Hello Blog</h1>
           <h2 className="font-size-lg-fluid">
             An example blog powered by a user friendly content management system
@@ -19,9 +19,11 @@ export default function Hero() {
           color: white;
         }
 
-        .container {
+        .hero-content {
           position: relative;
           height: 100vh;
+          max-width: 90%;
+          margin: 0 auto;
         }
 
         h1 {

@@ -14,12 +14,6 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.container {
-  width: 90%;
-  max-width: 100rem;
-  margin: 0 auto;
-}
-
 /* Responsive font sizes */
 .font-size-xxl-fluid {
   font-size: clamp(3rem, 12vw, 9rem);
