@@ -40,6 +40,18 @@ export default function Hero({ heading, tagLine, image }) {
           bottom: 17vh;
           right: 0;
         }
+
+        @media (max-width: 64rem) {
+          h1,
+          h2 {
+            text-align: center;
+          }
+
+          h2 {
+            position: static;
+            margin-top: min(8em, 33vh);
+          }
+        }
       `}</style>
     </>
   );
