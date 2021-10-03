@@ -1,3 +1,4 @@
+import React from "react";
 import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded";
 
 export default {
@@ -73,4 +74,28 @@ export default {
       ],
     },
   ],
+  preview: {
+    select: {
+      title: "title",
+      author: "author.name",
+      date: "publishedDate",
+      image: "mainImage",
+    },
+    prepare(selection) {
+      const { title, author, date, image } = selection;
+      const formattedDate = date && date.split("T")[0];
+
+      return {
+        title,
+        subtitle: `${author || "No author"} - ${
+          formattedDate ? formattedDate : "no date"
+        }`,
+        media: image ? (
+          image
+        ) : (
+          <img src="/static/images/no-image.png" alt={title} />
+        ),
+      };
+    },
+  },
 };
