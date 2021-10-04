@@ -4,17 +4,19 @@ import PostMainImage from "../../components/PostMainImage";
 import PostBody from "../../components/PostBody";
 import { groq } from "next-sanity";
 import { getClient } from "../../lib/sanity.server";
-import { usePreviewSubscription } from "../../lib/sanity";
-
-function filterDataToSingleItem(data, preview) {
-  if (!Array.isArray(data)) return data;
-
-  return data.length > 1 && preview
-    ? data.filter(item => item._id.startsWith(`drafts.`)).slice(-1)[0]
-    : data.slice(-1)[0];
-}
+import { useEffect, useState } from "react";
+import {
+  filterDataToSingleItem,
+  usePreviewSubscription,
+} from "../../lib/sanity";
 
 export default function Post({ data, preview }) {
+  const [path, setPath] = useState("");
+
+  useEffect(() => {
+    setPath(window.location.pathname);
+  }, []);
+
   const { data: previewData } = usePreviewSubscription(data?.query, {
     params: data?.queryParams ?? {},
     initialData: data?.post,
@@ -26,13 +28,7 @@ export default function Post({ data, preview }) {
   return (
     <>
       {preview && (
-        <a
-          href={`/api/exitPreview${
-            data?.queryParams?.slug
-              ? `/?slug=/posts/${data.queryParams.slug}`
-              : ``
-          }`}
-        >
+        <a href={`/api/exitPreview/?slug=${path}`}>
           Previewing. Click to exit.
         </a>
       )}
