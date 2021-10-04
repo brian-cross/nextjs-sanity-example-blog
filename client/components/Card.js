@@ -1,28 +1,40 @@
-import Image from "next/image";
 import Link from "next/link";
+import CoverImage from "./CoverImage";
+import formatIsoDate from "../lib/formatIsoDate";
+import { urlForImage } from "../lib/sanity";
 
-export default function Card({ title, author, image, altText, tags, date }) {
+export default function Card({
+  title,
+  author,
+  image,
+  altText,
+  tags,
+  date,
+  slug,
+}) {
   return (
     <>
       <article>
         <div className="text">
-          <Link href="#">
+          <Link href={`/posts/${slug}`}>
             <a>
               <h1 className="font-size-md-fixed">{title}</h1>
             </a>
           </Link>
-          <h2 className="font-size-reg-fixed">{author}</h2>
+          <h2 className="font-size-reg-fixed">{author || "No Author"}</h2>
         </div>
         <div className="image">
-          <Image src={image} layout="fill" objectFit="cover" alt={altText} />
+          {image && <CoverImage image={image} alt={altText} />}
         </div>
         <div className="text">
           <ul>
-            {tags.map((tag, index) => (
-              <li key={index}>{tag}</li>
-            ))}
+            {tags ? (
+              tags.map((tag, index) => <li key={index}>{tag}</li>)
+            ) : (
+              <li>Uncategorized</li>
+            )}
           </ul>
-          <time>{date}</time>
+          <time>{date && formatIsoDate(date)}</time>
         </div>
       </article>
       <style jsx>{`
