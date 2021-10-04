@@ -3,16 +3,17 @@ import Iframe from "sanity-plugin-iframe-pane";
 import resolveProductionUrl from "./lib/resolveProductionUrl";
 import PanoramaRoundedIcon from "@mui/icons-material/PanoramaRounded";
 
-export const getDefaultDocumentNode = () => {
-  return S.document().views([
-    S.view.form(),
-    S.view
-      .component(Iframe)
-      .options({
-        url: doc => resolveProductionUrl(doc),
-      })
-      .title("Preview"),
-  ]);
+export const getDefaultDocumentNode = ({ schemaType }) => {
+  if (schemaType === "post")
+    return S.document().views([
+      S.view.form(),
+      S.view
+        .component(Iframe)
+        .options({
+          url: doc => resolveProductionUrl(doc),
+        })
+        .title("Preview"),
+    ]);
 };
 
 export default () =>
