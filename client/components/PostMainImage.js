@@ -1,17 +1,11 @@
-import Image from "next/image";
-import { urlForImage } from "../lib/sanity";
+import CoverImage from "./CoverImage";
 
 export default function PostMainImage({ image, altText }) {
   return (
     <>
-      {image && (
+      {image?.asset && (
         <div className="image">
-          <Image
-            layout="fill"
-            objectFit="cover"
-            src={urlForImage(image).url()}
-            alt={altText || ""}
-          />
+          <CoverImage image={image} altText={altText} />
         </div>
       )}
 
