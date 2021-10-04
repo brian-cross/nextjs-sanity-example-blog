@@ -13,12 +13,15 @@ export default async function preview(req, res) {
     return res.status(401).json({ message: "No slug" });
   }
 
+  // Construct the path based on the document type
+  const path = req.query.type === "post" ? "/posts" : "";
+
   // Enable Preview Mode by setting the cookies
   res.setPreviewData({});
 
   // Redirect to the path from the fetched post
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-  res.writeHead(307, { Location: `/posts/${req?.query?.slug}` ?? `/` });
+  res.writeHead(307, { Location: `${path}/${req?.query?.slug}` ?? `/` });
 
   return res.end();
 }
