@@ -2,9 +2,9 @@ import Link from "next/link";
 import Hero from "../components/Hero";
 import Card from "../components/Card";
 import CardGrid from "../components/CardGrid";
-import { sanityClient } from "../lib/sanity.server";
-import { groq } from "next-sanity";
 import Container from "../components/Container";
+import { groq } from "next-sanity";
+import { sanityClient } from "../lib/sanity.server";
 
 export default function Home({ hero, posts }) {
   return (
@@ -18,64 +18,22 @@ export default function Home({ hero, posts }) {
         <main>
           <h3 className="font-size-xl-fluid">Blog Posts</h3>
           <CardGrid>
-            <Card
-              title="A title or brief description"
-              author="Brian Cross"
-              image="/images/hero-bg.jpg"
-              altText="Mountains"
-              tags={["Landscapes", "Winter", "Mountains"]}
-              date="Sept 22 2021"
-            />
-            <Card
-              title="A title or brief description"
-              author="Brian Cross"
-              image="/images/hero-bg.jpg"
-              altText="Mountains"
-              tags={["Landscapes", "Winter", "Mountains"]}
-              date="Sept 22 2021"
-            />
-            <Card
-              title="A title or brief description"
-              author="Brian Cross"
-              image="/images/hero-bg.jpg"
-              altText="Mountains"
-              tags={["Landscapes", "Winter", "Mountains"]}
-              date="Sept 22 2021"
-            />
-            <Card
-              title="A title or brief description"
-              author="Brian Cross"
-              image="/images/hero-bg.jpg"
-              altText="Mountains"
-              tags={["Landscapes", "Winter", "Mountains"]}
-              date="Sept 22 2021"
-            />
-            <Card
-              title="A title or brief description"
-              author="Brian Cross"
-              image="/images/hero-bg.jpg"
-              altText="Mountains"
-              tags={["Landscapes", "Winter", "Mountains"]}
-              date="Sept 22 2021"
-            />
-            <Card
-              title="A title or brief description"
-              author="Brian Cross"
-              image="/images/hero-bg.jpg"
-              altText="Mountains"
-              tags={["Landscapes", "Winter", "Mountains"]}
-              date="Sept 22 2021"
-            />
+            {posts &&
+              posts.map(post => {
+                return (
+                  <Card
+                    key={post._id}
+                    title={post?.title}
+                    author={post?.author?.name}
+                    image={post?.mainImage}
+                    altText={post?.mainImage?.altText}
+                    tags={post?.tags}
+                    date={post?.publishedDate}
+                    slug={post?.slug}
+                  />
+                );
+              })}
           </CardGrid>
-          <ul>
-            {posts.map(post => (
-              <li key={post._id}>
-                <Link href={`/posts/${post.slug}`}>
-                  <a>{post.title}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
         </main>
       </Container>
       <style jsx>{`
@@ -96,16 +54,19 @@ export async function getStaticProps() {
   *[_type == "post"] | order(_createdAt asc) {
     _id,
     title,
-    "slug": slug.current
-  }
+    subtitle,
+    author->{name},
+    mainImage,
+    publishedDate,
+    "slug": slug.current,
+    "tags": tags[]->tagName
+}
   `;
 
   const [hero, posts] = await Promise.all([
     sanityClient.fetch(heroQuery),
     sanityClient.fetch(postQuery),
   ]);
-
-  console.log(hero);
 
   return {
     props: {
