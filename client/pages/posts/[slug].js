@@ -4,26 +4,12 @@ import PostMainImage from "../../components/PostMainImage";
 import PostBody from "../../components/PostBody";
 import { groq } from "next-sanity";
 import { getClient } from "../../lib/sanity.server";
-import { useEffect, useState } from "react";
-import {
-  filterDataToSingleItem,
-  usePreviewSubscription,
-} from "../../lib/sanity";
+import { usePath, usePreview } from "../../lib/hooks";
+import { filterDataToSingleItem } from "../../lib/sanity";
 
 export default function Post({ data, preview }) {
-  const [path, setPath] = useState("");
-
-  useEffect(() => {
-    setPath(window.location.pathname);
-  }, []);
-
-  const { data: previewData } = usePreviewSubscription(data?.query, {
-    params: data?.queryParams ?? {},
-    initialData: data?.post,
-    enabled: preview,
-  });
-
-  const post = filterDataToSingleItem(previewData, preview);
+  const path = usePath();
+  const post = usePreview(data, data?.post, preview);
 
   return (
     <>
