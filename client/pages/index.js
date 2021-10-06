@@ -49,7 +49,14 @@ export default function Home({ hero, posts }) {
 
 export async function getStaticProps() {
   const heroQuery = groq`
-  *[_type == "hero"]{heading, tagLine, image}[0]
+  *[_type == "hero"][0]{
+    heading,
+    tagLine,
+    image{
+      ...,
+      "placeholder": asset->metadata.lqip
+    }
+  }
   `;
 
   const postQuery = groq`
@@ -65,7 +72,7 @@ export async function getStaticProps() {
     publishedDate,
     "slug": slug.current,
     "tags": tags[]->tagName,
-}
+  }
   `;
 
   const [hero, posts] = await Promise.all([
