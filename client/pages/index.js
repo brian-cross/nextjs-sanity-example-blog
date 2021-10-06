@@ -5,37 +5,40 @@ import CardGrid from "../components/CardGrid";
 import Container from "../components/Container";
 import { groq } from "next-sanity";
 import { sanityClient } from "../lib/sanity.server";
+import Layout from "../components/Layout";
 
 export default function Home({ hero, posts }) {
   return (
     <>
-      <Hero
-        heading={hero?.heading}
-        tagLine={hero?.tagLine}
-        image={hero?.image}
-      />
-      <Container>
-        <main>
-          <h3 className="font-size-xl-fluid">Blog Posts</h3>
-          <CardGrid>
-            {posts &&
-              posts.map(post => {
-                return (
-                  <Card
-                    key={post._id}
-                    title={post?.title}
-                    author={post?.author?.name}
-                    image={post?.mainImage}
-                    altText={post?.mainImage?.altText}
-                    tags={post?.tags}
-                    date={post?.publishedDate}
-                    slug={post?.slug}
-                  />
-                );
-              })}
-          </CardGrid>
-        </main>
-      </Container>
+      <Layout>
+        <Hero
+          heading={hero?.heading}
+          tagLine={hero?.tagLine}
+          image={hero?.image}
+        />
+        <Container>
+          <main>
+            <h3 className="font-size-xl-fluid">Blog Posts</h3>
+            <CardGrid>
+              {posts &&
+                posts.map(post => {
+                  return (
+                    <Card
+                      key={post._id}
+                      title={post?.title}
+                      author={post?.author?.name}
+                      image={post?.mainImage}
+                      altText={post?.mainImage?.altText}
+                      tags={post?.tags}
+                      date={post?.publishedDate}
+                      slug={post?.slug}
+                    />
+                  );
+                })}
+            </CardGrid>
+          </main>
+        </Container>
+      </Layout>
       <style jsx>{`
         h3 {
           font-weight: bold;

@@ -1,37 +1,34 @@
+import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 import PostHeader from "../../components/PostHeader";
 import PostMainImage from "../../components/PostMainImage";
 import PostBody from "../../components/PostBody";
 import { groq } from "next-sanity";
 import { getClient } from "../../lib/sanity.server";
-import { usePath, usePreview } from "../../lib/hooks";
+import { usePreview } from "../../lib/hooks";
 import { filterDataToSingleItem } from "../../lib/sanity";
 
 export default function Post({ data, preview }) {
-  const path = usePath();
   const post = usePreview(data, data?.post, preview);
 
   return (
     <>
-      {preview && (
-        <a href={`/api/exitPreview/?slug=${path}`}>
-          Previewing. Click to exit.
-        </a>
-      )}
-      <Container narrow>
-        <PostHeader
-          title={post?.title}
-          subtitle={post?.subtitle}
-          date={post?.publishedDate}
-          avatar={post?.author?.avatar}
-          authorName={post?.author?.name}
-        />
-        <PostMainImage
-          image={post?.mainImage}
-          altText={post?.mainImage?.altText}
-        />
-        <PostBody content={post?.body} />
-      </Container>
+      <Layout preview={preview}>
+        <Container narrow>
+          <PostHeader
+            title={post?.title}
+            subtitle={post?.subtitle}
+            date={post?.publishedDate}
+            avatar={post?.author?.avatar}
+            authorName={post?.author?.name}
+          />
+          <PostMainImage
+            image={post?.mainImage}
+            altText={post?.mainImage?.altText}
+          />
+          <PostBody content={post?.body} />
+        </Container>
+      </Layout>
     </>
   );
 }
