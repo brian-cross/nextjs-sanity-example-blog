@@ -8,6 +8,8 @@ export default function CoverImage({ image, altText }) {
       objectFit="cover"
       src={urlForImage(image).url()}
       alt={altText || ""}
+      placeholder="blur"
+      blurDataURL={image?.placeholder}
     />
   );
 }

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Hero from "../components/Hero";
 import Card from "../components/Card";
 import CardGrid from "../components/CardGrid";
@@ -59,10 +58,13 @@ export async function getStaticProps() {
     title,
     subtitle,
     author->{name},
-    mainImage,
+    mainImage{
+      ...,
+      "placeholder": asset->metadata.lqip
+    },
     publishedDate,
     "slug": slug.current,
-    "tags": tags[]->tagName
+    "tags": tags[]->tagName,
 }
   `;
 
