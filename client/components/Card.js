@@ -1,7 +1,6 @@
 import Link from "next/link";
 import CoverImage from "./CoverImage";
 import formatIsoDate from "../lib/formatIsoDate";
-import { urlForImage } from "../lib/sanity";
 
 export default function Card({
   title,
