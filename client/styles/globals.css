@@ -14,6 +14,17 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: #666;
+  }
+}
+
 /* Responsive font sizes */
 .font-size-xxl-fluid {
   font-size: clamp(3rem, 12vw, 9rem);

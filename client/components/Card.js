@@ -50,17 +50,6 @@ export default function Card({
           padding: 2rem;
         }
 
-        a {
-          text-decoration: none;
-          color: currentColor;
-        }
-
-        @media (hover: hover) {
-          a:hover {
-            color: #666;
-          }
-        }
-
         h1 {
           margin-top: 0;
         }
