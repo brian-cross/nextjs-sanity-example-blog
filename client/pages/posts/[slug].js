@@ -54,7 +54,10 @@ export async function getStaticProps({ params, preview = false }) {
     title,
     subtitle,
     author->{name, avatar},
-    mainImage,
+    mainImage{
+      ...,
+      "placeholder": asset->metadata.lqip
+    },
     publishedDate,
     body,
     "slug": slug.current,
