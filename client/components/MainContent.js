@@ -1,11 +1,11 @@
-export default function MainContent({ children }) {
+export default function MainContent({ children, id = "" }) {
   return (
     <>
-      <main>{children}</main>
+      <main id={id}>{children}</main>
       <style jsx>{`
         main {
-          margin-top: var(--xxl-fluid);
-          margin-bottom: var(--xl-fluid);
+          padding-top: 5.5rem;
+          padding-bottom: 3rem;
         }
       `}</style>
     </>
