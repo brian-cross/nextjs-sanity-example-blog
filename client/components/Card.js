@@ -15,16 +15,20 @@ export default function Card({
     <>
       <article>
         <div className="text">
-          <Link href={`/posts/${slug}`}>
-            <a>
-              <h1 className="font-size-md-fixed">{title}</h1>
-            </a>
-          </Link>
+          <h1 className="font-size-md-fixed">
+            <Link href={`/posts/${slug}`}>
+              <a>{title}</a>
+            </Link>
+          </h1>
           <h2 className="font-size-reg-fixed">{author || "No Author"}</h2>
         </div>
-        <div className="image">
-          {image && <CoverImage image={image} alt={altText} />}
-        </div>
+        <Link href={`/posts/${slug}`}>
+          <a>
+            <div className="image">
+              {image && <CoverImage image={image} alt={altText} />}
+            </div>
+          </a>
+        </Link>
         <div className="text">
           <ul>
             {tags ? (
@@ -39,10 +43,20 @@ export default function Card({
       <style jsx>{`
         article {
           width: 100%;
-           {
-            /* max-width: 30rem; */
-          }
+          /* max-width: 30rem; */
           box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.25);
+          transition: transform 0.15s ease-in-out;
+          pointer-events: none;
+        }
+
+        @media (hover: hover) {
+          article:hover {
+            transform: translateY(-1%);
+          }
+        }
+
+        a {
+          pointer-events: auto;
         }
 
         .text {
@@ -63,6 +77,7 @@ export default function Card({
           width: 100%;
           height: 15rem;
         }
+
         ul {
           list-style: none;
           display: flex;
