@@ -13,13 +13,13 @@ export default function Header({ transparent }) {
             <nav>
               <ul>
                 <li>
-                  <Link href="/">
-                    <a className="navlink">About</a>
+                  <Link href="/#blog-posts">
+                    <a className="navlink">Blog</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#blog-posts">
-                    <a className="navlink">Blog</a>
+                  <Link href="/">
+                    <a className="navlink">About</a>
                   </Link>
                 </li>
               </ul>
