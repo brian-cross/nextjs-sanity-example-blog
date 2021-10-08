@@ -7,7 +7,7 @@ export default function Header({ transparent }) {
       <header className={transparent ? "transparent" : "opaque"}>
         <Container>
           <div className="content">
-            <Link href="/">
+            <Link href={`/#top-of-page`}>
               <a className="home">HB</a>
             </Link>
             <nav>
@@ -18,7 +18,7 @@ export default function Header({ transparent }) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/">
+                  <Link href="/#blog-posts">
                     <a className="navlink">Blog</a>
                   </Link>
                 </li>

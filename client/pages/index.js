@@ -26,7 +26,7 @@ export default function Home({ hero, posts }) {
           image={hero?.image}
         />
         <Container>
-          <MainContent>
+          <MainContent id="blog-posts">
             <h3 className="font-size-xl-fluid">Blog Posts</h3>
             <CardGrid>
               {posts &&
@@ -51,6 +51,7 @@ export default function Home({ hero, posts }) {
       <style jsx>{`
         h3 {
           font-weight: bold;
+          margin: 0.67em 0;
         }
       `}</style>
     </>

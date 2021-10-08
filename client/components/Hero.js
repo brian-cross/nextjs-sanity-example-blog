@@ -4,7 +4,7 @@ import HeroImage from "./HeroImage";
 export default function Hero({ heading, tagLine, image }) {
   return (
     <>
-      <div className="outer">
+      <div className="outer" id="top-of-page">
         <HeroImage image={image} />
         <Container>
           <div className="hero-content">
