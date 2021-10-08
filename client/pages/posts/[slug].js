@@ -1,5 +1,6 @@
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
+import MainContent from "../../components/MainContent";
 import PostHeader from "../../components/PostHeader";
 import PostMainImage from "../../components/PostMainImage";
 import PostBody from "../../components/PostBody";
@@ -15,18 +16,20 @@ export default function Post({ data, preview }) {
     <>
       <Layout preview={preview}>
         <Container narrow>
-          <PostHeader
-            title={post?.title}
-            subtitle={post?.subtitle}
-            date={post?.publishedDate}
-            avatar={post?.author?.avatar}
-            authorName={post?.author?.name}
-          />
-          <PostMainImage
-            image={post?.mainImage}
-            altText={post?.mainImage?.altText}
-          />
-          <PostBody content={post?.body} />
+          <MainContent>
+            <PostHeader
+              title={post?.title}
+              subtitle={post?.subtitle}
+              date={post?.publishedDate}
+              avatar={post?.author?.avatar}
+              authorName={post?.author?.name}
+            />
+            <PostMainImage
+              image={post?.mainImage}
+              altText={post?.mainImage?.altText}
+            />
+            <PostBody content={post?.body} />
+          </MainContent>
         </Container>
       </Layout>
     </>
