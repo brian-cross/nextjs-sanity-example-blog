@@ -2,6 +2,11 @@
 
 * {
   box-sizing: border-box;
+  --xxl-fluid: clamp(3rem, 12vw, 9rem);
+  --xl-fluid: clamp(2rem, 6vw, 4rem);
+  --lg-fluid: clamp(1rem, 4vw, 3rem);
+  --md-fixed: 1.5rem;
+  --reg-fixed: 1.25rem;
 }
 
 html,
@@ -15,7 +20,6 @@ body {
 }
 
 a {
-  text-decoration: none;
   color: currentColor;
 }
 
@@ -27,23 +31,23 @@ a {
 
 /* Responsive font sizes */
 .font-size-xxl-fluid {
-  font-size: clamp(3rem, 12vw, 9rem);
+  font-size: var(--xxl-fluid);
 }
 
 .font-size-xl-fluid {
-  font-size: clamp(2rem, 6vw, 4rem);
+  font-size: var(--xl-fluid);
 }
 
 .font-size-lg-fluid {
-  font-size: clamp(1rem, 4vw, 3rem);
+  font-size: var(--lg-fluid);
 }
 
 .font-size-md-fixed {
-  font-size: 1.5rem;
+  font-size: var(--md-fixed);
 }
 
 .font-size-reg-fixed {
-  font-size: 1.25rem;
+  font-size: var(--reg-fixed);
 }
 
 @media (orientation: landscape) and (max-height: 40rem) {
