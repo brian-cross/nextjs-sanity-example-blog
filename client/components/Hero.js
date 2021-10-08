@@ -1,3 +1,4 @@
+import Container from "./Container";
 import HeroImage from "./HeroImage";
 
 export default function Hero({ heading, tagLine, image }) {
@@ -5,10 +6,12 @@ export default function Hero({ heading, tagLine, image }) {
     <>
       <div className="outer">
         <HeroImage image={image} />
-        <div className="hero-content">
-          <h1 className="font-size-xxl-fluid">{heading}</h1>
-          <h2 className="font-size-lg-fluid">{tagLine}</h2>
-        </div>
+        <Container>
+          <div className="hero-content">
+            <h1 className="font-size-xxl-fluid">{heading}</h1>
+            <h2 className="font-size-lg-fluid">{tagLine}</h2>
+          </div>
+        </Container>
       </div>
       <style jsx>{`
         .outer {
@@ -20,14 +23,12 @@ export default function Hero({ heading, tagLine, image }) {
         .hero-content {
           position: relative;
           height: 100vh;
-          max-width: 90%;
-          margin: 0 auto;
         }
 
         h1 {
           font-weight: bold;
           margin: 0;
-          padding-top: 12vh;
+          padding-top: 20vh;
         }
 
         h2 {
@@ -45,6 +46,10 @@ export default function Hero({ heading, tagLine, image }) {
           h1,
           h2 {
             text-align: center;
+          }
+
+          h1 {
+            padding-top: 33vh;
           }
 
           h2 {

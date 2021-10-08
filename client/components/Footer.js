@@ -3,8 +3,8 @@ import Container from "./Container";
 export default function Footer() {
   return (
     <>
-      <Container>
-        <footer>
+      <footer>
+        <Container>
           <p>
             Powered by <a href="https://nextjs.org/">Next.js</a> and{" "}
             <a href="https://www.sanity.io/">Sanity.io</a>
@@ -15,11 +15,12 @@ export default function Footer() {
               GitHub
             </a>
           </p>
-        </footer>
-      </Container>
+        </Container>
+      </footer>
       <style jsx>{`
         footer {
-          padding: 2em 0;
+          padding: 1em 0;
+          border-top: 1px solid #ccc;
         }
 
         p {
