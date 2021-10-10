@@ -72,7 +72,7 @@ a {
 /* Scrollbar - Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #333 #666;
+  scrollbar-color: #666 #333;
 }
 
 /* Scrollbar - Chrome, Edge, and Safari */
@@ -81,9 +81,9 @@ a {
 }
 
 *::-webkit-scrollbar-track {
-  background: #666;
+  background: #333;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #333;
+  background-color: #666;
 }
