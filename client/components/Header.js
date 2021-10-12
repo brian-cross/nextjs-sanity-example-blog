@@ -18,7 +18,7 @@ export default function Header({ transparent }) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/">
+                  <Link href="/about">
                     <a className="navlink">About</a>
                   </Link>
                 </li>
