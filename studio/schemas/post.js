@@ -1,11 +1,9 @@
 import React from "react";
-import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded";
 
 export default {
   title: "Blog Post",
   name: "post",
   type: "document",
-  icon: ArticleRoundedIcon,
   fields: [
     {
       title: "Title",
